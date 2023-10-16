@@ -2,7 +2,7 @@ import React from 'react';
 import './Filter.styled';
 import { FilterStyle } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { setFilter } from '../../redux/filterSlice';
+import { setFilter } from '../../redux/contacts/filterSlice';
 
 
 const Filter = ({ name }) => {

@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components"
 import 'modern-normalize'
 
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +10,7 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding: 20px 50px;
    
   }
   
@@ -18,11 +19,9 @@ body {
       monospace;
   }
 
-  ul{
+  ul, a{
     list-style: none;
+    text-decoration: none;
   }
-
-
 `
 
-export default GlobalStyle;

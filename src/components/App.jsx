@@ -1,47 +1,51 @@
-import React from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import Filter from './Filter/Filter';
-import ContactList from './ContactList/ContactList';
-import GlobalStyle from './GlobalStyle';
-import { SectionStyle, TitleStyle, TitleContactsStyle, ContactListStyle } from './App.styled';
-import {
-  selectLoading,
-  selectError,
-  selectContacts
-} from '../redux/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../redux/operations';
-import { useEffect } from 'react';
 
-const App = () => {
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const contacts = useSelector(selectContacts);
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from '../redux/auth/operations';
+import { useAuth } from '../hooks';
+
+const Home = lazy(() => import('../pages/Home/Home'));
+const Register = lazy(() => import('../pages/Register/Register'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
+
+export const App = () => {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-
-
-  return (
-    <SectionStyle>
-      <TitleStyle> Phonebook </TitleStyle>
-      <ContactForm/>
-      {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          {contacts.length === 0 && (
-            <p>There are no any contacts </p>
-          )}
-      <TitleContactsStyle> Contacts </TitleContactsStyle>
-      <ContactListStyle>
-        <Filter />
-        <ContactList />
-      </ContactListStyle>
-      <GlobalStyle />
-    </SectionStyle>
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+<Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Login/>} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
-
-export default App;

@@ -4,9 +4,9 @@ import { StyledForm, StyledField, SubmitButton } from './ContactForm.styled';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { addContact } from '../../redux/operations';
+import { addContact } from '../../redux/contacts/operations';
 
-import {selectContacts} from '../../redux/selectors';
+import {selectContacts} from '../../redux/contacts/selectors';
 
 const userSchema = yup.object().shape({
   name: yup.string().required().label("name"),
