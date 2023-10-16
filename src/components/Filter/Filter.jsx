@@ -1,8 +1,15 @@
 import React from 'react';
-import './Filter.styled';
-import { FilterStyle } from './Filter.styled';
+// import './Filter.styled';
+// import { FilterStyle } from './Filter.styled';
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/contacts/filterSlice';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const Filter = ({ name }) => {
@@ -15,20 +22,49 @@ const Filter = ({ name }) => {
   const handleReset = () => {
     changeContactHandler('');
   };
-
+  const defaultTheme = createTheme();
+  
   return (
-    <FilterStyle>
-      {
-        <input
+    <ThemeProvider theme={defaultTheme}>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+
+      
+        <Grid container spacing={2}>
+        <Grid item xs={12}>
+        <TextField
+        required
+        fullWidth
           type='text'
           name='Find contact'
           value={name}
           onChange={evt => changeContactHandler(evt.target.value)}
           placeholder='Filter'
         />
-      }
-      <button onClick={handleReset}>Reset filter</button>
-    </FilterStyle>
+        </Grid>
+      
+    
+      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }} onClick={handleReset}>
+                    <Button
+                      type="submit"
+                      
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                    > Reset filter </Button>
+                  </Grid>
+      </Grid>
+
+    </Box>
+      </Container>
+    </ThemeProvider>
   );
 };
 

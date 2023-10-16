@@ -3,7 +3,7 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import Filter from '../../components/Filter/Filter';
 import ContactList from '../../components/ContactList/ContactList';
 
-import { SectionStyle, TitleStyle, TitleContactsStyle, ContactListStyle } from './Contacts.styled';
+import { SectionStyle, TitleStyle, ContactListStyle } from './ContactsStyle';
 import {
   selectLoading,
   selectError,
@@ -31,12 +31,13 @@ export const Contacts = () => {
       <ContactForm/>
       {loading && <p>Loading...</p>}
           {error && <p>{error}</p>}
-          {contacts.length === 0 && (
-            <p>There are no any contacts </p>
-          )}
-      <TitleContactsStyle> Contacts </TitleContactsStyle>
+
+      <TitleStyle> Contacts </TitleStyle>
       <ContactListStyle>
         <Filter />
+        {contacts.length === 0 && (
+            <p>There are no any contacts </p>
+          )}
         <ContactList />
       </ContactListStyle>
       

@@ -9,7 +9,8 @@ export const UserMenu = () => {
 
   return (
     <UserMenuStyle >
-      <GreetingsStyle >Welcome, {user.name}</GreetingsStyle>
+     
+      <GreetingsStyle >{user.email}</GreetingsStyle>
       <StyledButton type="button" onClick={() => dispatch(logOut())}>
         Logout
       </StyledButton>
