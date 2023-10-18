@@ -1,8 +1,9 @@
 import React from 'react';
 // import './Filter.styled';
 // import { FilterStyle } from './Filter.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from '../../redux/contacts/filterSlice';
+import {selectContacts} from '../../redux/contacts/selectors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -12,8 +13,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 
+
 const Filter = ({ name }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const changeContactHandler = (newFilter) => {
     dispatch(setFilter(newFilter));
@@ -24,8 +27,11 @@ const Filter = ({ name }) => {
   };
   const defaultTheme = createTheme();
   
+  const  renderFilter = contacts.length > 0;
+
   return (
-    <ThemeProvider theme={defaultTheme}>
+    renderFilter &&
+    (<ThemeProvider theme={defaultTheme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -64,7 +70,7 @@ const Filter = ({ name }) => {
 
     </Box>
       </Container>
-    </ThemeProvider>
+    </ThemeProvider>)
   );
 };
 

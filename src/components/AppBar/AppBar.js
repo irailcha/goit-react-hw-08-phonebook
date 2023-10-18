@@ -13,7 +13,7 @@ export const AppBar = () => {
 
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    
+
     </Header>
   );
 };

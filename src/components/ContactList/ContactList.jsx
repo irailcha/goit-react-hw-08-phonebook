@@ -6,6 +6,7 @@ import { deleteContact } from '../../redux/contacts/operations';
 import { selectVisibleContacts } from '../../redux/contacts/selectors';
 
 const ContactList = () => {
+  
   const dispatch = useDispatch();
   const visibleContacts = useSelector(selectVisibleContacts);
 

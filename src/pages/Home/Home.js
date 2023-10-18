@@ -7,7 +7,6 @@ export const Home = () =>  {
   return (
     <StyledHomePage >
       <StyledTitle>
-      Address Book:<br />
       Navigating Your Contacts
       </StyledTitle>
       <img src={addressBookImage} alt="Address Book" />

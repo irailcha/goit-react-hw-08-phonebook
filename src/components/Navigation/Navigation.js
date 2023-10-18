@@ -10,6 +10,7 @@ export const Navigation = () => {
       <StyledNavLink  to="/">
         Home
       </StyledNavLink>
+
       {isLoggedIn && (
         <StyledNavLink to="/contacts">
           Contacts

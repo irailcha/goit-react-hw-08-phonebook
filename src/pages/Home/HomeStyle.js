@@ -6,7 +6,7 @@ export const StyledHomePage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  
 `;
 
 export const StyledTitle = styled.h1`

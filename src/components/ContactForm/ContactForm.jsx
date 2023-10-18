@@ -20,10 +20,12 @@ const userSchema = yup.object().shape({
 });
 
 const ContactForm = () => {
+  
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
   const addContactHandler = (values, { resetForm }) => {
+    console.log('addContactHandler called')
     const { name, number } = values;
     if (contacts.find(contact => contact.name.toLowerCase() === values.name.toLowerCase() || contact.number === values.number)) {
       return alert(`${values.name} or ${values.number} is already exist`)
@@ -40,7 +42,7 @@ const ContactForm = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -49,7 +51,7 @@ const ContactForm = () => {
           <Formik initialValues={{ name: '', number: '' }} validationSchema={userSchema} onSubmit={addContactHandler}>
             {({ handleSubmit }) => (
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }} autoComplete='off'>
-                <Grid container spacing={2}>
+                <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <label htmlFor='name'> Name </label>
                     <TextField

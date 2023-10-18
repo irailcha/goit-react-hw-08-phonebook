@@ -2,8 +2,7 @@ import React from 'react';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import Filter from '../../components/Filter/Filter';
 import ContactList from '../../components/ContactList/ContactList';
-
-import { SectionStyle, TitleStyle, ContactListStyle } from './ContactsStyle';
+import { SectionStyle, TitleStyle, ContactListStyle, MessageStyle } from './ContactsStyle';
 import {
   selectLoading,
   selectError,
@@ -14,6 +13,7 @@ import { fetchContacts } from '../../redux/contacts/operations';
 import { useEffect } from 'react';
 
 export const Contacts = () => {
+
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const contacts = useSelector(selectContacts);
@@ -29,14 +29,14 @@ export const Contacts = () => {
     <SectionStyle>
       <TitleStyle> Phonebook </TitleStyle>
       <ContactForm/>
-      {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
+      {loading && <MessageStyle>Loading...</MessageStyle>}
+          {error && <MessageStyle>{error}</MessageStyle>}
 
       <TitleStyle> Contacts </TitleStyle>
       <ContactListStyle>
         <Filter />
         {contacts.length === 0 && (
-            <p>There are no any contacts </p>
+            <MessageStyle>There are no any contacts </MessageStyle>
           )}
         <ContactList />
       </ContactListStyle>

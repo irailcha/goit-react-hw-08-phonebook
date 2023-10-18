@@ -11,6 +11,7 @@ export const TitleStyle = styled.h2`
 font-size: 30px;
 margin:0 auto;
 text-align: center;
+padding: 10px;
 `
 
 export const ContactListStyle=styled.ul`
@@ -24,3 +25,9 @@ margin: 0 auto;
 padding-top: 20px;
 
 `
+export const MessageStyle = styled.p`
+font-size: 18px;
+margin:0 auto;
+text-align: center;
+`
+
