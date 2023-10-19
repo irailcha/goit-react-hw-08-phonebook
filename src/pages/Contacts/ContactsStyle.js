@@ -11,7 +11,7 @@ export const TitleStyle = styled.h2`
 font-size: 30px;
 margin:0 auto;
 text-align: center;
-padding: 10px;
+padding-top: 15px;
 `
 
 export const ContactListStyle=styled.ul`

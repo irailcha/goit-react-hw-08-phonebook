@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyledForm, StyledField, SubmitButton } from './ContactForm.styled';
+import { StyledForm, StyledField} from './ContactFormStyle';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import { addContact } from '../../redux/contacts/operations';
-
 import {selectContacts} from '../../redux/contacts/selectors';
 
 const userSchema = yup.object().shape({
   name: yup.string().required().label("name"),
-  number: yup.string().required().label("number"),
+  number: yup.string().required().label('number'),
 });
 
 const ContactForm = () => {
@@ -23,7 +23,7 @@ const ContactForm = () => {
     if (contacts.find(contact => contact.name.toLowerCase() === values.name.toLowerCase() || contact.number === values.number)) {
       return alert(`${values.name} or ${values.number} is already exist`)
     }
-    dispatch(addContact({name, phone:number}));
+    dispatch(addContact({name, number}));
     resetForm();
   }; 
 
@@ -50,7 +50,16 @@ const ContactForm = () => {
           />
 
           
-          <SubmitButton type='submit'> Add contact </SubmitButton>
+               <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                type="submit"
+                
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Add contact
+              </Button>
+              </Grid>
 
         </StyledForm>
       )}
@@ -59,3 +68,5 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
+

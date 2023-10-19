@@ -7,6 +7,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
+import { Box } from '@mui/material';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('../pages/Register/Register'));
@@ -22,7 +23,16 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
+    <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+    }}
+  >
     <b>Refreshing user...</b>
+    </Box>
   ) : (
 <Routes>
       <Route path="/" element={<Layout />}>

@@ -20,7 +20,7 @@ export const Contacts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('fetchContacts')
+    
     dispatch(fetchContacts());
   }, [dispatch]);
 
